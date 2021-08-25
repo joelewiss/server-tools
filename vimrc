@@ -22,6 +22,9 @@ Plugin 'posva/vim-vue'
 let g:vue_pre_processors = []
 
 Plugin 'pangloss/vim-javascript'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'preservim/nerdtree'
+Plugin 'nvie/vim-flake8'
 
 " Done with Vundle
 call vundle#end()
@@ -35,12 +38,11 @@ set number
 " Use spaces instead of tabs by default
 " This is changed by files in ~/.vim/after/ftplugin
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 " Turn on autoindent and smartindent
-filetype indent on
-"set autoindent
+set autoindent
 set smartindent
 "set cindent
 
@@ -48,10 +50,13 @@ set smartindent
 set ruler
 
 " Highlight text over 80 chars
-"augroup vimrc_autocmds
-"    autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
-"    autocmd BufEnter * match OverLength /\%>80v.\+/
-"augroup END
+augroup vimrc_autocmds
+    autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
+    autocmd BufEnter * match OverLength /\%>80v.\+/
+augroup END
+
+" Start NERDTree and put the cursor back in the other window
+autocmd VimEnter * NERDTree | wincmd p
 
 " Allow backspace to delete autoindent, eol, and start of insert
 set backspace=indent,eol,start
@@ -61,13 +66,4 @@ colorscheme desert
 syntax enable
 
 " Enable wildmenu
-set wildmenu
-set wildmode=longest:full,full
-
-" Tab navigation like Firefox.
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+set wildchar=<Tab> wildmenu wildmode=longest:full,full
