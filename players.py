@@ -11,7 +11,7 @@ SERVERS = [
     {
         "ip": "192.168.1.12",
         "port": 25565,
-        "name": "eleanor",
+        "name": "s",
     },
 ]
 
