@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Enable vim-airline
 Plugin 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 " Enable airline theme
 Plugin 'vim-airline/vim-airline-themes'
@@ -56,12 +57,12 @@ augroup vimrc_autocmds
 augroup END
 
 " Start NERDTree and put the cursor back in the other window
-autocmd VimEnter * NERDTree | wincmd p
+"autocmd VimEnter * NERDTree | wincmd p
 
 " Allow backspace to delete autoindent, eol, and start of insert
 set backspace=indent,eol,start
 
-colorscheme desert
+colorscheme default
 
 syntax enable
 
