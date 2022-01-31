@@ -1,5 +1,4 @@
 " Use spaces instead of tabs by default
-" This is changed by files in ~/.vim/after/ftplugin
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -10,43 +9,50 @@ set showmatch
 set number
 
 call plug#begin(stdpath('data').'/plugged')
-    " Editing
-    Plug 'tpope/vim-sleuth' " detect indent style (tabs vs. spaces)
+    " ==== PLUGINS ====
+    Plug 'tpope/vim-sleuth'                 " detects indent style (tabs vs. spaces)
+    Plug 'tpope/vim-fugitive'               " Git integration
+    Plug 'tpope/vim-commentary'             " Commenting tool
+    Plug 'vim-airline/vim-airline'          " Status bar
+    Plug 'vim-airline/vim-airline-themes'   " Status bar themes
+    Plug 'sainnhe/sonokai'                  " Nice theme
+    Plug 'scrooloose/nerdtree'              " File browser
+    Plug 'ryanoasis/vim-devicons'           " Nice icons
+    Plug 'posva/vim-vue'                    " Vue syntax highlighting
+    Plug 'MaxMEllon/vim-jsx-pretty'         " JSX syntax highlighting
+    Plug 'nvie/vim-flake8'                  " Flake8 python linting
+    Plug 'neoclide/coc.nvim'                " Code completion
 
-    " Status bar and editor enhancements
-    Plug 'vim-airline/vim-airline'
+
+    " ==== PLUGIN CONFIGURATION ====
+
+    " Airline configuration
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_powerline_fonts = 1
-    Plug 'scrooloose/nerdtree'
-    Plug 'ryanoasis/vim-devicons'
-    " Toggle NERDTree
+    let g:airline_theme='sonokai'
+
+    " Sonokai configuration
+    let g:sonokai_enable_italic = 1
+    let g:sonokai_disable_italic_comment = 1
+    let g:sonokai_transparent_background = 1
+
+    " NERDTree configuration
     nmap <silent><C-n> :NERDTreeToggle<CR>
     " Automaticaly close nvim if NERDTree is only thing left open
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-    " Syntax Plugins
-    Plug 'tpope/vim-fugitive'
-    Plug 'posva/vim-vue'
-    Plug 'MaxMEllon/vim-jsx-pretty'
-    Plug 'nvie/vim-flake8'
+    " COC configuration
+    " This is a lot of configuration so I put it in another file
+    source /home/joe/.config/nvim/coc.vim
 
 
-    " Theming
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'sainnhe/edge'
-    "Plug 'sainnhe/sonokai'
+
+    " ==== VIM CONFIGURATION ====
 
     " Enable colors if available
     if has('termguicolors')
         set termguicolors
     endif
-
-    " Edge configuration
-    let g:edge_style = 'neon'
-    let g:edge_enable_italic = 0
-    let g:edge_disable_italic_comment = 1
-    " let g:airline_theme='edge'
-
 call plug#end()
 
-colorscheme default
+colorscheme sonokai
